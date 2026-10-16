@@ -26,6 +26,18 @@ namespace Clock
 
 		private void bthHideControls_Click(object sender, EventArgs e)
 		{
+            cbShowDate.Visible = false;
+            cbShowWeekday.Visible = false;
+            bthHideControls.Visible = false;
+            this.ShowInTaskbar = false;
+            this.FormBorderStyle = FormBorderStyle.None;
+            this.TransparencyKey = this.BackColor;
+		}
+
+		//команда для закрытие часов: taskkill /f /im clock.exe
+
+		private void MainForm_Load(object sender, EventArgs e)
+		{
 
 		}
 	}

@@ -39,6 +39,7 @@
 			// labelTime
 			// 
 			this.labelTime.AutoSize = true;
+			this.labelTime.BackColor = System.Drawing.SystemColors.Highlight;
 			this.labelTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 31.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.labelTime.Location = new System.Drawing.Point(12, 9);
 			this.labelTime.Name = "labelTime";
@@ -98,6 +99,7 @@
 			this.MaximizeBox = false;
 			this.Name = "MainForm";
 			this.Text = "Clock P_418";
+			this.Load += new System.EventHandler(this.MainForm_Load);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
