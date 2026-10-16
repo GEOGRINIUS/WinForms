@@ -24,7 +24,7 @@ namespace Clock
             if (cbShowWeekday.Checked) labelTime.Text += $"\n{DateTime.Now.DayOfWeek}";
 		}
 
-		private void MainForm_Load(object sender, EventArgs e)
+		private void bthHideControls_Click(object sender, EventArgs e)
 		{
 
 		}
