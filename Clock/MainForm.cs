@@ -48,5 +48,20 @@ namespace Clock
 		//команда для закрытие часов: taskkill /f /im clock.exe
 
 		private void labelTime_DoubleClick(object sender, EventArgs e) => SetVisibility(true);
+
+		private void tsmiTopmost_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void backgroundColoeToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void contextMenu_Opening(object sender, CancelEventArgs e)
+		{
+
+		}
 	}
 }
