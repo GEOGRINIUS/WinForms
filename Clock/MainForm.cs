@@ -17,6 +17,19 @@ namespace Clock
             InitializeComponent();
         }
 
+		//					Methods:
+		void SetVisibility(bool vidible)
+		{
+			cbShowDate.Visible		= vidible;
+			cbShowWeekday.Visible	= vidible;
+			bthHideControls.Visible = vidible;
+			this.ShowInTaskbar		= vidible;
+			this.FormBorderStyle	= vidible ? FormBorderStyle.FixedToolWindow : FormBorderStyle.None;
+			this.TransparencyKey	= vidible ? Color.Empty : this.BackColor;
+		}
+
+
+        //      Event handlers (Обработчики событий)
 		private void timer_Tick(object sender, EventArgs e)
 		{
             labelTime.Text = DateTime.Now.ToString("hh:mm:ss tt");
@@ -24,21 +37,10 @@ namespace Clock
             if (cbShowWeekday.Checked) labelTime.Text += $"\n{DateTime.Now.DayOfWeek}";
 		}
 
-		private void bthHideControls_Click(object sender, EventArgs e)
-		{
-            cbShowDate.Visible = false;
-            cbShowWeekday.Visible = false;
-            bthHideControls.Visible = false;
-            this.ShowInTaskbar = false;
-            this.FormBorderStyle = FormBorderStyle.None;
-            this.TransparencyKey = this.BackColor;
-		}
+		private void bthHideControls_Click(object sender, EventArgs e) => SetVisibility(false);
 
 		//команда для закрытие часов: taskkill /f /im clock.exe
 
-		private void MainForm_Load(object sender, EventArgs e)
-		{
-
-		}
+		private void labelTime_DoubleClick(object sender, EventArgs e) => SetVisibility(true);
 	}
 }

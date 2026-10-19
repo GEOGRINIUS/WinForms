@@ -47,6 +47,7 @@
 			this.labelTime.TabIndex = 0;
 			this.labelTime.Text = "Current time";
 			this.labelTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.labelTime.DoubleClick += new System.EventHandler(this.labelTime_DoubleClick);
 			// 
 			// timer
 			// 
@@ -99,7 +100,6 @@
 			this.MaximizeBox = false;
 			this.Name = "MainForm";
 			this.Text = "Clock P_418";
-			this.Load += new System.EventHandler(this.MainForm_Load);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
