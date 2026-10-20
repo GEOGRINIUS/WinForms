@@ -43,25 +43,22 @@ namespace Clock
             if (cbShowWeekday.Checked) labelTime.Text += $"\n{DateTime.Now.DayOfWeek}";
 		}
 
-		private void bthHideControls_Click(object sender, EventArgs e) => SetVisibility(false);
+		private void bthHideControls_Click(object sender, EventArgs e) => SetVisibility(tsmiShowControls.Checked = false);
 
 		//команда для закрытие часов: taskkill /f /im clock.exe
 
-		private void labelTime_DoubleClick(object sender, EventArgs e) => SetVisibility(true);
+		private void labelTime_DoubleClick(object sender, EventArgs e) => SetVisibility(tsmiShowControls.Checked = true);
+		
+		private void tsmiTopmost_CheckedChanged(object sender, EventArgs e) => this.TopMost = tsmiTopmost.Checked;
 
-		private void tsmiTopmost_Click(object sender, EventArgs e)
-		{
+		private void tsmiShowControls_CheckedChanged(object sender, EventArgs e) => SetVisibility(tsmiShowControls.Checked);
 
-		}
+		private void tsmiShowDate_CheckedChanged(object sender, EventArgs e) => cbShowDate.Checked = tsmiShowDate.Checked;
 
-		private void backgroundColoeToolStripMenuItem_Click(object sender, EventArgs e)
-		{
+		private void tsmiShowWeekday_CheckedChanged(object sender, EventArgs e) => cbShowWeekday.Checked = tsmiShowWeekday.Checked;
 
-		}
+		private void cbShowDate_CheckedChanged(object sender, EventArgs e) => tsmiShowDate.Checked = cbShowDate.Checked;
 
-		private void contextMenu_Opening(object sender, CancelEventArgs e)
-		{
-
-		}
+		private void cbShowWeekday_CheckedChanged(object sender, EventArgs e) => tsmiShowWeekday.Checked = cbShowWeekday.Checked;
 	}
 }
