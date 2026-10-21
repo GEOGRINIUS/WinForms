@@ -41,6 +41,7 @@ namespace Clock
             labelTime.Text = DateTime.Now.ToString("hh:mm:ss tt");
             if (cbShowDate.Checked)    labelTime.Text += $"\n{DateTime.Now.ToString("yyyy.MM.dd")}";
             if (cbShowWeekday.Checked) labelTime.Text += $"\n{DateTime.Now.DayOfWeek}";
+			notifyIcon.Text = labelTime.Text;
 		}
 
 		private void bthHideControls_Click(object sender, EventArgs e) => SetVisibility(tsmiShowControls.Checked = false);
