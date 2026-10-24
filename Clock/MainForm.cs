@@ -12,15 +12,20 @@ namespace Clock
 {
     public partial class MainForm: Form
     {
+	ColorDialog backgroundColorDialog;
+	ColorDialog foregroundColorDialog;
         public MainForm()
         {
             InitializeComponent();
+			backgroundColorDialog = new ColorDialog();
+			foregroundColorDialog = new ColorDialog();
 
 			this.Location = new Point
 			(
 				Screen.PrimaryScreen.Bounds.Right - this.Width - 50,
 				Screen.PrimaryScreen.Bounds.Bottom / 20
 			);
+			SetVisibility(false);
         }
 
 		//					Methods:
@@ -71,6 +76,18 @@ namespace Clock
 				this.TopMost = true;
 				this.TopMost = false;
 			}
+		}
+
+		private void tsmiBackgroundColor_Click(object sender, EventArgs e)
+		{
+			if(backgroundColorDialog.ShowDialog() == DialogResult.OK)
+				labelTime.BackColor = backgroundColorDialog.Color;
+		}
+
+		private void tsmifFregroundColor_Click(object sender, EventArgs e)
+		{
+			if (foregroundColorDialog.ShowDialog() == DialogResult.OK)
+				labelTime.ForeColor = foregroundColorDialog.Color;
 		}
 	}
 }
