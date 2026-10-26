@@ -14,7 +14,7 @@ namespace Clock
 {
     public partial class FontDialog: Form
     {
-        public Font font { get; set; }
+        public Font Font { get; set; }
         public FontDialog()
         {
             InitializeComponent();
@@ -25,7 +25,16 @@ namespace Clock
             LoadFonts("*.ttf");
             LoadFonts("*.otf");
             comboBoxFont.SelectedIndex = 0;
-
+        }
+        public FontDialog(Form parentwindow) : this()
+        {
+            this.StartPosition = FormStartPosition.Manual;
+            this.Location = new Point
+            (
+                parentwindow.Location.X - this.Width / 3,
+                parentwindow.Location.Y + 128
+            );
+        }
             void LoadFonts(String pattern)
             {
             string[] files = Directory.GetFiles(Directory.GetCurrentDirectory(), pattern);
@@ -35,7 +44,6 @@ namespace Clock
             }
             comboBoxFont.Items.AddRange(files);
             }
-        }
 
 		private void comboBoxFont_SelectionChangeCommitted(object sender, EventArgs e) => ApplyFont();
 
