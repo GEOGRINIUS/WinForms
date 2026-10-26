@@ -17,6 +17,24 @@ namespace Clock
         {
             InitializeComponent();
             Console.WriteLine(Directory.GetCurrentDirectory());
+            Console.WriteLine($"{Application.ExecutablePath}");
+            Directory.SetCurrentDirectory($"{Application.ExecutablePath}\\..\\..\\..\\Fonts");
+            Console.WriteLine(Directory.GetCurrentDirectory());
+            LoadFonts("*.ttf");
+            LoadFonts("*.otf");
+
+            void LoadFonts(String pattern)
+            {
+            string[] files = Directory.GetFiles(Directory.GetCurrentDirectory(), pattern);
+            for(int i=0; i<files.Length; i++)
+            {
+                files[i] = files[i].Split('\\').Last();
+            }
+            comboBoxFont.Items.AddRange(files);
+            }
+
+            //MessageBox.Show(Directory.GetCurrentDirectory());
+
         }
     }
 }
