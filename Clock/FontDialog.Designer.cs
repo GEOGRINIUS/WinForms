@@ -45,6 +45,7 @@
 			this.comboBoxFont.Name = "comboBoxFont";
 			this.comboBoxFont.Size = new System.Drawing.Size(561, 24);
 			this.comboBoxFont.TabIndex = 0;
+			this.comboBoxFont.SelectionChangeCommitted += new System.EventHandler(this.comboBoxFont_SelectionChangeCommitted);
 			// 
 			// buttonOK
 			// 
@@ -72,9 +73,9 @@
 			this.labelExample.Font = new System.Drawing.Font("Microsoft Sans Serif", 31.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.labelExample.Location = new System.Drawing.Point(12, 58);
 			this.labelExample.Name = "labelExample";
-			this.labelExample.Size = new System.Drawing.Size(238, 63);
+			this.labelExample.Size = new System.Drawing.Size(363, 61);
 			this.labelExample.TabIndex = 3;
-			this.labelExample.Text = "Example";
+			this.labelExample.Text = "Example 1234";
 			// 
 			// counterFontSize
 			// 
@@ -87,6 +88,7 @@
             0,
             0,
             0});
+			this.counterFontSize.ValueChanged += new System.EventHandler(this.counterFontSize_ValueChanged);
 			// 
 			// FontDialog
 			// 
