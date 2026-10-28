@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using Microsoft.Win32;
 
 namespace Clock
 {
@@ -100,6 +101,15 @@ namespace Clock
 		{
 			if (fontDialog.ShowDialog() == DialogResult.OK) 
 				labelTime.Font = fontDialog.Font;
+		}
+
+		private void tsmiAutorun_CheckedChanged(object sender, EventArgs e)
+		{
+			string key_name = "Clock_P_418";
+			RegistryKey registrykey = Registry.CurrentUser.OpenSubKey("Microsoft\\Windows\\CurrentVersion\\Explorer\\StartupApproved\\Run", true);//true - позволяет записать в открытую.
+			if (tsmiAutorun.Checked) registrykey.SetValue(key_name, Application.ExecutablePath);
+			else registrykey.DeleteValue(key_name, false);//false - НЕ бросать исключение (Exception) если ключ(Запись в реестре) не найден.
+			registrykey.Dispose();
 		}
 	}
 }
