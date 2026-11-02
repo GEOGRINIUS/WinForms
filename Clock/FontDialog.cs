@@ -16,6 +16,7 @@ namespace Clock
     {
         public Font Font { get; set; }
         public string Filename { get; set; }
+        public string CounterFontsize { get; set; }
         Form parentWindow;
         public FontDialog()
         {
@@ -47,6 +48,7 @@ namespace Clock
 			);
             labelExample.Font = Font;
             comboBoxFont.SelectedItem = Filename;
+            counterFontSize.Value = (int)Font.Size;
 		}
 
             void LoadFonts(String pattern)

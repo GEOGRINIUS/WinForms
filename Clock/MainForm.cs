@@ -59,6 +59,7 @@ namespace Clock
 			writer.WriteLine(tsmiShowDate.Checked);
 			writer.WriteLine(tsmiShowWeekday.Checked);
 			writer.WriteLine(fontDialog.Filename);
+			writer.WriteLine(labelTime.Font.Size);
 			writer.WriteLine(labelTime.BackColor.ToArgb());
 			writer.WriteLine(labelTime.ForeColor.ToArgb());
 			writer.Close();
@@ -77,7 +78,8 @@ namespace Clock
 			fontDialog.Filename = reader.ReadLine();
 			PrivateFontCollection pfc = new PrivateFontCollection();
 			pfc.AddFontFile($"{Application.ExecutablePath}\\..\\..\\..\\Fonts\\{fontDialog.Filename}");
-			fontDialog.Font = labelTime.Font = new Font(pfc.Families[0], 32);
+			int fontSize = Convert.ToInt32(reader.ReadLine());
+			fontDialog.Font = labelTime.Font = new Font(pfc.Families[0], fontSize);
 
 			backgroundColorDialog.Color = labelTime.BackColor = Color.FromArgb(Convert.ToInt32(reader.ReadLine()));
 			foregroundColorDialog.Color = labelTime.ForeColor = Color.FromArgb(Convert.ToInt32(reader.ReadLine()));
@@ -145,7 +147,8 @@ namespace Clock
 		private void tsmiAutorun_CheckedChanged(object sender, EventArgs e)
 		{
 			string key_name = "Clock_P_418";
-			RegistryKey registrykey = Registry.CurrentUser.OpenSubKey("Microsoft\\Windows\\CurrentVersion\\Explorer\\StartupApproved\\Run", true);//true - позволяет записать в открытую.
+			RegistryKey registrykey = Registry.CurrentUser.OpenSubKey
+				("Software\\Microsoft\\Windows\\CurrentVersion\\Run", true);//true - позволяет записать в открытую.
 			if (tsmiAutorun.Checked) registrykey.SetValue(key_name, Application.ExecutablePath);
 			else registrykey.DeleteValue(key_name, false);//false - НЕ бросать исключение (Exception) если ключ(Запись в реестре) не найден.
 			registrykey.Dispose();
