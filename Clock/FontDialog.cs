@@ -17,19 +17,20 @@ namespace Clock
         public Font Font { get; set; }
         public string Filename { get; set; }
         public string CounterFontsize { get; set; }
-        Form parentWindow;
+        MainForm parentWindow;
         public FontDialog()
         {
             InitializeComponent();
-            Console.WriteLine(Directory.GetCurrentDirectory());
-            Console.WriteLine($"{Application.ExecutablePath}");
-            Directory.SetCurrentDirectory($"{Application.ExecutablePath}\\..\\..\\..\\Fonts");
-            Console.WriteLine(Directory.GetCurrentDirectory());
-            LoadFonts("*.ttf");
-            LoadFonts("*.otf");
-            comboBoxFont.SelectedIndex = 0;
+            //if(parentWindow.tsmiShowConsole.Checked)Console.WriteLine(Directory.GetCurrentDirectory());
+            //if(parentWindow.tsmiShowConsole.Checked)Console.WriteLine($"{Application.ExecutablePath}");
+            //Directory.SetCurrentDirectory($"{Application.ExecutablePath}\\..\\..\\..\\Fonts");
+            //if(parentWindow.tsmiShowConsole.Checked)Console.WriteLine(Directory.GetCurrentDirectory());
+           
+            //LoadFonts("*.ttf");
+            //LoadFonts("*.otf");
+            //comboBoxFont.SelectedIndex = 0;
         }
-        public FontDialog(Form parentWindow) : this()
+        public FontDialog(MainForm parentWindow) : this()
         {
             this.parentWindow = parentWindow;
             this.StartPosition = FormStartPosition.Manual;
@@ -38,6 +39,23 @@ namespace Clock
                 parentWindow.Location.X - this.Width / 3,
                 parentWindow.Location.Y + 128
             );
+
+            if (parentWindow.tsmiShowConsole.Checked)
+            try
+            {
+                    Console.WriteLine(Directory.GetCurrentDirectory());
+            }
+            catch(Exception ex)
+            {
+                    MessageBox.Show(ex.Message);
+            }
+            if (parentWindow.tsmiShowConsole.Checked) Console.WriteLine($"{Application.ExecutablePath}");
+            Directory.SetCurrentDirectory($"{Application.ExecutablePath}\\..\\..\\..\\Fonts");
+            if (parentWindow.tsmiShowConsole.Checked) Console.WriteLine(Directory.GetCurrentDirectory());
+
+            LoadFonts("*.ttf");
+            LoadFonts("*.otf");
+            comboBoxFont.SelectedIndex = 0;
         }
 		private void FontDialog_Load(object sender, EventArgs e)
 		{
@@ -49,6 +67,7 @@ namespace Clock
             labelExample.Font = Font;
             comboBoxFont.SelectedItem = Filename;
             counterFontSize.Value = (int)Font.Size;
+            if(parentWindow.tsmiShowConsole.Checked)Console.WriteLine(Directory.GetCurrentDirectory());
 		}
 
             void LoadFonts(String pattern)

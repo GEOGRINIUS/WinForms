@@ -24,7 +24,7 @@ namespace Clock
         public MainForm()
         {
             InitializeComponent();
-			AllocConsole();
+			//AllocConsole();
 			this.Location = new Point
 			(
 				Screen.PrimaryScreen.Bounds.Right - this.Width - 50,
@@ -39,6 +39,8 @@ namespace Clock
         }
 		[DllImport("Kernel32.dll")]
 		public static extern bool AllocConsole();
+		[DllImport("Kerne32.dll")]
+		public static extern bool FreeConsole();
 
 		//					Methods:
 		void SetVisibility(bool vidible)
@@ -90,7 +92,7 @@ namespace Clock
 			RegistryKey registryKey = Registry.CurrentUser.OpenSubKey
 				(
 					"Software\\Microsoft\\Windows\\CurrentVersion\\Run",
-					false	//Запретить запись в реестре
+					false	 //Запретить запись в реестре
 				);
 			tsmiAutorun.Checked = registryKey.GetValueNames().Contains("Clock_P_418");
 			registryKey.Dispose();
@@ -105,26 +107,22 @@ namespace Clock
 			notifyIcon.Text = labelTime.Text;
 		}
 
-		private void bthHideControls_Click(object sender, EventArgs e) => SetVisibility(tsmiShowControls.Checked = false);
-
 		//команда для закрытие часов: taskkill /f /im clock.exe
 
+		private void bthHideControls_Click(object sender, EventArgs e) => SetVisibility(tsmiShowControls.Checked = false);
 		private void labelTime_DoubleClick(object sender, EventArgs e) => SetVisibility(tsmiShowControls.Checked = true);
-		
 		private void tsmiTopmost_CheckedChanged(object sender, EventArgs e) => this.TopMost = tsmiTopmost.Checked;
-
 		private void tsmiShowControls_CheckedChanged(object sender, EventArgs e) => SetVisibility(tsmiShowControls.Checked);
+		private void tsmiShowConsole_CheckedChanged(object sender, EventArgs e)
+		{
+			bool b = (sender as ToolStripMenuItem).Checked ? AllocConsole() : FreeConsole();
+		}
 
 		private void tsmiShowDate_CheckedChanged(object sender, EventArgs e) => cbShowDate.Checked = tsmiShowDate.Checked;
-
 		private void tsmiShowWeekday_CheckedChanged(object sender, EventArgs e) => cbShowWeekday.Checked = tsmiShowWeekday.Checked;
-
 		private void cbShowDate_CheckedChanged(object sender, EventArgs e) => tsmiShowDate.Checked = cbShowDate.Checked;
-
 		private void cbShowWeekday_CheckedChanged(object sender, EventArgs e) => tsmiShowWeekday.Checked = cbShowWeekday.Checked;
-
 		private void tsmiExit_Click(object sender, EventArgs e) => this.Close();
-
 		private void notifyIcon_DoubleClick(object sender, EventArgs e)
 		{
 			if(this.TopMost == false)

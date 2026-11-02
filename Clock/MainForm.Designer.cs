@@ -33,6 +33,7 @@
 			this.labelTime = new System.Windows.Forms.Label();
 			this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.tsmiTopmost = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmiShowConsole = new System.Windows.Forms.ToolStripMenuItem();
 			this.tsmiShowControls = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.tsmiShowDate = new System.Windows.Forms.ToolStripMenuItem();
@@ -73,6 +74,7 @@
 			this.contextMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
 			this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiTopmost,
+            this.tsmiShowConsole,
             this.tsmiShowControls,
             this.toolStripSeparator1,
             this.tsmiShowDate,
@@ -85,7 +87,7 @@
             this.toolStripSeparator4,
             this.tsmiExit});
 			this.contextMenu.Name = "contextMenu";
-			this.contextMenu.Size = new System.Drawing.Size(177, 220);
+			this.contextMenu.Size = new System.Drawing.Size(211, 272);
 			// 
 			// tsmiTopmost
 			// 
@@ -94,6 +96,14 @@
 			this.tsmiTopmost.Size = new System.Drawing.Size(210, 24);
 			this.tsmiTopmost.Text = "Topmost";
 			this.tsmiTopmost.CheckedChanged += new System.EventHandler(this.tsmiTopmost_CheckedChanged);
+			// 
+			// tsmiShowConsole
+			// 
+			this.tsmiShowConsole.CheckOnClick = true;
+			this.tsmiShowConsole.Name = "tsmiShowConsole";
+			this.tsmiShowConsole.Size = new System.Drawing.Size(210, 24);
+			this.tsmiShowConsole.Text = "Show console";
+			this.tsmiShowConsole.CheckedChanged += new System.EventHandler(this.tsmiShowConsole_CheckedChanged);
 			// 
 			// tsmiShowControls
 			// 
@@ -278,6 +288,7 @@
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
 		private System.Windows.Forms.ToolStripMenuItem tsmiExit;
 		private System.Windows.Forms.NotifyIcon notifyIcon;
+		public System.Windows.Forms.ToolStripMenuItem tsmiShowConsole;
 	}
 }
 
