@@ -86,6 +86,14 @@ namespace Clock
 
 			reader.Close();
 			Process.Start("notepad", filename);
+
+			RegistryKey registryKey = Registry.CurrentUser.OpenSubKey
+				(
+					"Software\\Microsoft\\Windows\\CurrentVersion\\Run",
+					false	//Запретить запись в реестре
+				);
+			tsmiAutorun.Checked = registryKey.GetValueNames().Contains("Clock_P_418");
+			registryKey.Dispose();
 		}
 
         //      Event handlers (Обработчики событий)
